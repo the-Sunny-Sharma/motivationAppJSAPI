@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>Document</title>
+    <style>
+        *{
+            font-size: 30px;
+        }
+        body{
+            background-color: aquamarine;
+        }
+    </style>
+    <script>
+        function getMsg(){
+            event.preventDefault();
+            let msg = document.getElementById("msg");
+            let aut = document.getElementById("aut");
+            let url = "http://api.quotable.io/random";
+            fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                msg.innerHTML = data.content;
+                aut.innerHTML = data.author;
+            })
+            .catch(err => msg.innerHTML = "issue = " + err);
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <h1>Motivational App by Kamal Sir and Sunny Sharma</h1>
+        <form onsubmit="getMsg()">
+            <input type = "submit" value="Get Msg"/>
+        </form>
+        <h2 id="msg" />
+        <h2 id="aut" />
+    </center>
+</body>
+</html>
